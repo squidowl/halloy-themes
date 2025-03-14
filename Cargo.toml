@@ -1,0 +1,19 @@
+[workspace]
+members = ["packages/*"]
+resolver = "3"
+
+[workspace.package]
+version = "0.1.0"
+authors = ["Casper Rogild Storm", "Cory Forsstrom"]
+license = "GPL-3.0-or-later"
+edition = "2024"
+
+[workspace.dependencies]
+serde-wasm-bindgen = "0.4"
+thiserror = "2.0.12"
+
+halloy_theme = { git = "https://github.com/squidowl/halloy", rev = "c3288149176a11b5b32da0ed4da47c2123e880a2", package = "theme" }
+wasm-bindgen = { version = "0.2.100", features = ["serde_json"] }
+
+[patch.crates-io]
+iced_core = { git = "https://github.com/iced-rs/iced", rev = "fd5ed0d0a6e84b3c036ff8e1f0d62d383d4b1e82" }
