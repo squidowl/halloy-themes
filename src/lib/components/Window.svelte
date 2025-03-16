@@ -4,7 +4,7 @@
   import type { Theme } from '$lib/types/theme';
   import { randomizeColor } from '$lib/color';
 
-  export let theme: Theme;
+  const { theme }: { theme: Theme } = $props();
 
   const nickname = (nickname: string): string => {
     let color = theme.buffer?.nickname ?? '#000000';

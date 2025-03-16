@@ -7,5 +7,4 @@ import { sveltekit } from '@sveltejs/kit/vite';
 
 export default defineConfig({
   plugins: [wasm(), topLevelAwait(), tailwindcss(), sveltekit()],
-  
 });

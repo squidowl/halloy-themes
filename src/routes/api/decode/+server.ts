@@ -3,7 +3,7 @@ import type { RequestHandler } from './$types';
 
 import { decode } from 'theme';
 
-export const GET: RequestHandler = ({ url }) => {
+export const GET: RequestHandler = async ({ url }) => {
   const theme = url.searchParams.get('theme');
 
   if (theme === null) {

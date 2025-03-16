@@ -16,6 +16,8 @@
   "devDependencies": {
     "@eslint/compat": "^1.2.5",
     "@eslint/js": "^9.18.0",
+    "@fontsource/iosevka": "^5.2.5",
+    "@neondatabase/serverless": "^0.10.4",
     "@sveltejs/adapter-auto": "^4.0.0",
     "@sveltejs/adapter-vercel": "^5.6.3",
     "@sveltejs/kit": "^2.16.0",
@@ -23,15 +25,21 @@
     "@tailwindcss/typography": "^0.5.15",
     "@tailwindcss/vite": "^4.0.0",
     "@types/chroma-js": "^3.1.1",
-    "@types/seedrandom": "^3.0.8",
     "@types/lodash": "^4.17.16",
+    "@types/seedrandom": "^3.0.8",
+    "chroma-js": "^3.1.2",
+    "drizzle-kit": "^0.30.5",
+    "drizzle-orm": "^0.40.0",
     "eslint": "^9.18.0",
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-svelte": "^3.0.0",
     "globals": "^16.0.0",
+    "lodash": "^4.17.21",
+    "postgres": "^3.4.5",
     "prettier": "^3.4.2",
     "prettier-plugin-svelte": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.11",
+    "seedrandom": "^3.0.5",
     "svelte": "^5.0.0",
     "svelte-check": "^4.0.0",
     "tailwindcss": "^4.0.0",
@@ -47,11 +55,5 @@
       "esbuild"
     ]
   },
-  "packageManager": "pnpm@10.6.2+sha512.47870716bea1572b53df34ad8647b42962bc790ce2bf4562ba0f643237d7302a3d6a8ecef9e4bdfc01d23af1969aa90485d4cebb0b9638fa5ef1daef656f6c1b",
-  "dependencies": {
-    "@fontsource/iosevka": "^5.2.5",
-    "chroma-js": "^3.1.2",
-    "lodash": "^4.17.21",
-    "seedrandom": "^3.0.5"
-  }
+  "packageManager": "pnpm@10.6.2+sha512.47870716bea1572b53df34ad8647b42962bc790ce2bf4562ba0f643237d7302a3d6a8ecef9e4bdfc01d23af1969aa90485d4cebb0b9638fa5ef1daef656f6c1b"
 }
