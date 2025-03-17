@@ -20,7 +20,7 @@
           <div class="flex flex-row items-center justify-between px-2">
             <div class="text-lg font-bold">{item.name}</div>
             <div class="flex flex-row items-center gap-2">
-              <a href="halloy://theme?e=${item.encoded}" class="text-sm">Open in Halloy</a>
+              <a href="halloy://theme?e={item.encoded}" class="text-sm">Open in Halloy</a>
               <div class="h-4 w-px bg-gray-400"></div>
               <div class="text-sm">Download</div>
             </div>

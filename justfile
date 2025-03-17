@@ -24,7 +24,10 @@ down *SERVICE:
 logs *SERVICE:
     docker compose logs --follow {{SERVICE}}
 
-dev: up
+migrate:
+    npx drizzle-kit migrate
+
+dev: up migrate
     #!/usr/bin/env bash
      
     trap 'kill 0' SIGINT
