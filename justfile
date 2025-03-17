@@ -6,6 +6,7 @@ default:
 
 # Initialize repo, install deps
 init: _install-deps
+    pnpm i
 
 _install-deps:
     @command -v wasm-pack > /dev/null || cargo install wasm-pack
@@ -23,8 +24,11 @@ down *SERVICE:
 logs *SERVICE:
     docker compose logs --follow {{SERVICE}}
 
-watch:
-    cargo watch -w packages/theme/src/*.rs -s "wasm-pack build packages/theme"
-
 dev: up
-     vite dev
+    #!/usr/bin/env bash
+     
+    trap 'kill 0' SIGINT
+
+    cargo watch -w packages/theme/src/*.rs -s "wasm-pack build packages/theme" &
+    cargo watch -w src -s "svelte-kit sync" &
+    npx svelte-kit sync && npx vite dev
