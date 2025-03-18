@@ -41,3 +41,12 @@ dev host="localhost": up migrate
     cargo watch -w packages/theme/src/*.rs -s "wasm-pack build packages/theme" &
     cargo watch -w src -s "svelte-kit sync" &
     npx svelte-kit sync && npx vite dev --host {{host}}
+
+# Build prod
+build:
+    wasm-pack build packages/theme
+    npx vite build
+
+# Preview prod build
+preview host="localhost":
+    npx vite preview --host {{host}}
