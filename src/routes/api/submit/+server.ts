@@ -6,7 +6,11 @@ import { db } from '$lib';
 import { themes } from '$lib/db';
 
 export const POST: RequestHandler = async ({ request }) => {
-  const { name, theme: data, user: submittedBy }: { name: string, theme: object, user: string } = await request.json();
+  const {
+    name,
+    theme: data,
+    user: submittedBy
+  }: { name: string; theme: object; user: string } = await request.json();
 
   const encoded = encode(data);
 

@@ -10,4 +10,4 @@ neonConfig.fetchEndpoint = (host) => {
 
 export const db = drizzle({ client: neon(connectionString), casing: 'snake_case' });
 
-export { themes } from '$lib/db/schema'
+export { themes } from '$lib/db/schema';
