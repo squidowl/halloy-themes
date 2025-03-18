@@ -1,5 +1,6 @@
-import { json } from '@sveltejs/kit';
+import { error, json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
+import { SUBMIT_TOKEN } from '$env/static/private';
 
 import { encode } from 'theme';
 import { db } from '$lib';
@@ -9,8 +10,13 @@ export const POST: RequestHandler = async ({ request }) => {
   const {
     name,
     theme: data,
-    user: submittedBy
-  }: { name: string; theme: object; user: string } = await request.json();
+    user: submittedBy,
+    token
+  }: { name: string; theme: object; user: string; token: string } = await request.json();
+
+  if (token !== SUBMIT_TOKEN) {
+    error(403, "unauthorized");
+  }
 
   const encoded = encode(data);
 
