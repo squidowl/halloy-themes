@@ -1,0 +1,31 @@
+INSERT INTO theme
+(
+  name,
+  encoded,
+  data,
+  submitted_by
+)
+VALUES
+(
+  'ferra',
+  'ACspLf8BT0dN_wIyMDT_A_-gev8E_s2y_wWrinn_Bte94v8HsbaV_wjga3X_CbG2lf8KJCIm_wsdGx7_DCIgJP8NAAAAAA59bnb_D6-Nn_8QRz8w_xH2tsn_EkU9Qf8TaFZQ_xSrinn_FdHR4P8d9ddu_x4rKS3_HyQiJv8gHRse_yENDA3_IjIwNP8jPjxB_yRgYVX_JW9xYP8',
+  '{"general":{"background":"#2b292d","horizontal_rule":"#323034","unread_indicator":"#ffa07a","border":"#4f474d"},"text":{"primary":"#fecdb2","secondary":"#AB8A79","tertiary":"#d7bde2","success":"#b1b695","error":"#e06b75"},"buffer":{"background":"#242226","background_text_input":"#1D1B1E","background_title_bar":"#222024","timestamp":"#685650","action":"#b1b695","topic":"#AB8A79","highlight":"#473f30","code":"#af8d9f","nickname":"#f6b6c9","url":"#d1d1e0","selection":"#453d41","border_selected":"#7D6E76","server_messages":{"default":"#f5d76e"},"border":""},"buttons":{"primary":{"background":"#2b292d","background_hover":"#242226","background_selected":"#1d1b1e","background_selected_hover":"#0D0C0D"},"secondary":{"background":"#323034","background_hover":"#3e3c41","background_selected":"#606155","background_selected_hover":"#6F7160"}}}',
+  'casperstorm'
+),
+(
+  'midnight',
+  'AA0bKv8BQVp3_wIbJjv_AwCq__8E4OHd_wV3jan_Bqja3P8HTqje_wjmOUb_CU6o3v8KGyY7_wsKGS__DBEiQP8NQVp3_w5hpcL_D8jW5f8QPVqA_xEAtNj_EipNaf8TjZmu_xR3jan_FUjK5P8d_9Fm_x4bJjv_HxUiOP8gESJA_yEKGS__IkFad_8jUnqZ_yRskb__JY6u0_8',
+  '{"general":{"background":"#0d1b2a","horizontal_rule":"#1b263b","unread_indicator":"#00aaff","border":"#415a77"},"text":{"primary":"#e0e1dd","secondary":"#778da9","tertiary":"#a8dadc","success":"#4ea8de","error":"#e63946"},"buffer":{"background":"#1b263b","background_text_input":"#0a192f","background_title_bar":"#112240","timestamp":"#8d99ae","action":"#4ea8de","topic":"#778da9","highlight":"#3d5a80","code":"#c8d6e5","nickname":"#00b4d8","url":"#48cae4","selection":"#2a4d69","border_selected":"#61a5c2","server_messages":{"default":"#ffd166"},"border":"#415a77"},"buttons":{"primary":{"background":"#1b263b","background_hover":"#152238","background_selected":"#112240","background_selected_hover":"#0a192f"},"secondary":{"background":"#415a77","background_hover":"#527a99","background_selected":"#6c91bf","background_selected_hover":"#8eaed3"}}}',
+  'casperstorm'
+),
+(
+  'sunset',
+  'ABoaLv8B_58c_wIiIjv_A_9ra_8E9fX1_wX_pp7_Bv-fHP8HTs3E_wj_a2v_Cf-fHP8KIiI7_wsaGi7_DDo6XP8N_58c_w73JYX_D_9ra_8QxwA5_xH_nxz_EloYmv8T-Omh_xT_pp7_FU7NxP8d-Omh_x4aGi7_HyIiO_8gOjpc_yFaGJr_Iv-fHP8j_2tr_yT_TW3_JdgRWf8',
+  '{"general":{"background":"#1a1a2e","horizontal_rule":"#22223b","unread_indicator":"#ff6b6b","border":"#ff9f1c"},"text":{"primary":"#f5f5f5","secondary":"#ffa69e","tertiary":"#ff9f1c","success":"#4ecdc4","error":"#ff6b6b"},"buffer":{"background":"#22223b","background_text_input":"#1a1a2e","background_title_bar":"#3a3a5c","timestamp":"#f8e9a1","action":"#ff9f1c","topic":"#ffa69e","highlight":"#c70039","code":"#ff6b6b","nickname":"#ff9f1c","url":"#4ecdc4","selection":"#5a189a","border_selected":"#f72585","server_messages":{"default":"#f8e9a1"},"border":"#ff9f1c"},"buttons":{"primary":{"background":"#1a1a2e","background_hover":"#22223b","background_selected":"#3a3a5c","background_selected_hover":"#5a189a"},"secondary":{"background":"#ff9f1c","background_hover":"#ff6b6b","background_selected":"#ff4d6d","background_selected_hover":"#d81159"}}}',
+  'casperstorm'
+),(
+  'forest',
+  'AB8nG_8BS2BD_wIsPiX_A6O-jP8E2NTI_wWknYf_BsfHpv8Ho76M_wi_YWr_CaO-jP8KLD4l_wsgKx7_DB0lG_8NS2BD_w6Pl3n_D7_EpP8Qa3Bc_xHY1Mj_Ej1KOv8Tipp0_xSknYf_FZqMmP8d6sZ6_x4fJxv_HyUuIv8gLD4l_yE3STH_IktgQ_8jXnVS_yRxiWb_JY-Xef8',
+  '{"general":{"background":"#1f271b","horizontal_rule":"#2c3e25","unread_indicator":"#a3be8c","border":"#4b6043"},"text":{"primary":"#d8d4c8","secondary":"#a49d87","tertiary":"#c7c7a6","success":"#a3be8c","error":"#bf616a"},"buffer":{"background":"#2c3e25","background_text_input":"#202b1e","background_title_bar":"#1d251b","timestamp":"#8a9a74","action":"#a3be8c","topic":"#a49d87","highlight":"#6b705c","code":"#bfc4a4","nickname":"#d8d4c8","url":"#9a8c98","selection":"#3d4a3a","border_selected":"#8f9779","server_messages":{"default":"#eac67a"},"border":"#4b6043"},"buttons":{"primary":{"background":"#1f271b","background_hover":"#252e22","background_selected":"#2c3e25","background_selected_hover":"#374931"},"secondary":{"background":"#4b6043","background_hover":"#5e7552","background_selected":"#718966","background_selected_hover":"#8f9779"}}}',
+  'casperstorm'
+);
