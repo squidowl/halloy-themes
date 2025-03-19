@@ -11,6 +11,9 @@ importers:
       '@fontsource/inter':
         specifier: ^5.2.5
         version: 5.2.5
+      '@fontsource/iosevka':
+        specifier: ^5.2.5
+        version: 5.2.5
     devDependencies:
       '@eslint/compat':
         specifier: ^1.2.5
@@ -18,9 +21,6 @@ importers:
       '@eslint/js':
         specifier: ^9.18.0
         version: 9.22.0
-      '@fontsource/iosevka':
-        specifier: ^5.2.5
-        version: 5.2.5
       '@neondatabase/serverless':
         specifier: ^0.10.4
         version: 0.10.4
