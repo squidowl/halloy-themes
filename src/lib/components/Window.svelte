@@ -1,22 +1,25 @@
 <script lang="ts">
   import _ from 'lodash';
 
-  import type { Theme } from '$lib/types/theme';
+  import type { Theme, Item } from '$lib/types';
   import { randomizeColor } from '$lib/color';
+  
+  const { item }: { item: Item } = $props();
 
-  const { theme, href }: { theme: Theme; href: string } = $props();
-
+  const { theme } = item;
   const nickname = (nickname: string): string => {
     let color = theme.buffer?.nickname ?? '#000000';
     return randomizeColor(color, nickname);
   };
+
+
 </script>
 
 <div
   class="group relative w-full overflow-hidden rounded-lg border border border-gray-500 text-sm shadow-lg"
   style="font-family: 'Iosevka', monospace;"
 >
-  <a {href}>
+  <a href="halloy:///theme?e={item.encoded}">
     <!-- Window header -->
     <div
       class="flex items-center justify-between px-3 py-2"
