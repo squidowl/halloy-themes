@@ -25,12 +25,12 @@ logs *SERVICE:
     docker compose logs --follow {{SERVICE}}
 
 # Generate new database migrations
-generate name:
-    npx drizzle-kit generate --name {{name}}
+generate name env="dev":
+    npx drizzle-kit generate --name {{name}} --config ./drizzle.config.{{env}}.ts
 
 # Run database migrations
-migrate:
-    npx drizzle-kit migrate
+migrate env="dev":
+    npx drizzle-kit migrate --config ./drizzle.config.{{env}}.ts
 
 # Run dev environment
 dev host="localhost": up migrate
