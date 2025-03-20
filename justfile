@@ -51,10 +51,6 @@ build:
 preview host="localhost":
     npx vite preview --host {{host}}
 
-# Pull vercel env
-pull: 
-    npx vercel env pull --environment production .env.production
-
 # Deploy to vercel
 deploy: build
     npx vercel deploy --prebuilt
