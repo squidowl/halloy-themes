@@ -53,4 +53,4 @@ preview host="localhost":
 
 # Deploy to vercel
 deploy: build
-    npx vercel deploy --prebuilt
+    npx vercel deploy --prod --prebuilt
