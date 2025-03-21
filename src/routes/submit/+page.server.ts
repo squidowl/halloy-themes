@@ -5,20 +5,15 @@ export const actions: Actions = {
   default: async ({ request }) => {
     try {
       const formData = await request.formData();
-      const file = formData.get('file') as File;
-      
-      if (!file) {
-        return fail(400, { error: 'No file uploaded' });
-      }
-      
-      const arrayBuffer = await file.arrayBuffer();
-      const buffer = Buffer.from(arrayBuffer);
-      console.log(buffer);
-      
+      const encodedTheme = formData.get('encodedTheme');
+
+      console.log(encodedTheme);
+      // TODO: Validate the theme.
+      // TODO: Submit the theme.
+
       return { 
         success: true, 
-        message: `Theme "${file.name}" has been submitted successfully!`,
-        fileName: file.name,
+        message: `Theme has been submitted successfully!`,
       };
     } catch (error) {
       console.error('Upload error:', error);
