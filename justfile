@@ -48,7 +48,7 @@ build:
     npx vite build
 
 # Preview prod build
-preview host="localhost":
+preview host="localhost": build
     npx vite preview --host {{host}}
 
 # Deploy to vercel
