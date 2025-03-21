@@ -1,6 +1,6 @@
 {
-  "id": "601cb90f-5d09-4620-ba4c-c13f365f25fd",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "771e506e-559b-4031-ab18-36dd2577c065",
+  "prevId": "5b5d306d-d055-44f6-9fbf-5c97e38d2cf5",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -20,20 +20,14 @@
           "primaryKey": false,
           "notNull": true
         },
-        "data": {
-          "name": "data",
+        "colors": {
+          "name": "colors",
           "type": "json",
           "primaryKey": false,
           "notNull": true
         },
         "encoded": {
           "name": "encoded",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "submitted_by": {
-          "name": "submitted_by",
           "type": "text",
           "primaryKey": false,
           "notNull": true

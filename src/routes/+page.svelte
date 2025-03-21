@@ -5,7 +5,7 @@
 
   import type { PageProps } from './$types';
   import Window from '$lib/components/Window.svelte';
-  import Navigation from "$lib/components/Navigation.svelte";
+  import Navigation from '$lib/components/Navigation.svelte';
 
   const { data }: PageProps = $props();
 </script>
@@ -14,12 +14,12 @@
   <Navigation />
   <div class="w-full pt-16">
     <div class="flex flex-wrap justify-center gap-4 p-2">
-      {#each data.themes as item}
+      {#each data.themes as theme}
         <div class="p-4">
-          <Window {item} />
+          <Window {theme} />
           <div class="flex flex-col justify-start">
             <div class="text-md mt-2">
-              {item.name}
+              {theme.name}
             </div>
           </div>
         </div>

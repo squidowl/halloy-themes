@@ -52,9 +52,7 @@
       "uniqueConstraints": {
         "theme_name_unique": {
           "name": "theme_name_unique",
-          "columns": [
-            "name"
-          ],
+          "columns": ["name"],
           "nullsNotDistinct": false
         }
       },

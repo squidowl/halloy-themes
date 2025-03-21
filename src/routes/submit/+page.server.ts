@@ -1,8 +1,9 @@
-import { db } from '$lib';
+import type { Actions } from './$types';
+
 import { decode } from 'theme';
 import { fail } from '@sveltejs/kit';
-import { themes } from '$lib/db';
-import type { Actions } from './$types';
+
+import * as theme from '$lib/theme';
 
 export const actions: Actions = {
   default: async ({ request }) => {
@@ -11,32 +12,32 @@ export const actions: Actions = {
     const halloyUrl = formData.get('halloyUrl')?.toString();
 
     if (!themeName) {
-      return fail(400, { error: "Missing theme name" });
+      return fail(400, { error: 'Missing theme name' });
     }
     if (!halloyUrl) {
-      return fail(400, { error: "Missing halloy url" });
+      return fail(400, { error: 'Missing halloy url' });
     }
 
-    let encodedTheme;
-    let theme;
+    let encoded;
+    let colors;
     try {
-      encodedTheme = new URL(halloyUrl).searchParams.get('e');
+      encoded = new URL(halloyUrl).searchParams.get('e');
 
-      if (!encodedTheme) {
+      if (!encoded) {
         return fail(400, { invalid: true });
       }
 
-      theme = decode(encodedTheme);
+      colors = decode(encoded);
     } catch (e) {
       return fail(400, { invalid: true });
     }
 
     try {
-      await db.insert(themes).values({ name: themeName, data: theme, encoded: encodedTheme, submittedBy: '' });
+      await theme.submit(themeName, colors);
     } catch (e: any) {
       if (e instanceof Error) {
-        if (e.message.startsWith("duplicate key")) {
-          return fail(500, { error: "Theme name already exists, choose a new name" });
+        if (e.message.startsWith('duplicate key')) {
+          return fail(500, { error: 'Theme name already exists, choose a new name' });
         }
       }
       return fail(500, { error: e.message });
@@ -44,7 +45,7 @@ export const actions: Actions = {
 
     return {
       success: true,
-      message: `Theme has been submitted successfully!`,
+      message: `Theme has been submitted successfully!`
     };
   }
 };
