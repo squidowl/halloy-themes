@@ -1,9 +1,13 @@
 import { env } from '$env/dynamic/private'
-import { fail, redirect, type Actions } from '@sveltejs/kit';
+import { error, fail, redirect, type Actions } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import * as theme from '$lib/theme';
 
-export const load: PageServerLoad = async ({ url, cookies }) => {
+export const load: PageServerLoad = async ({ locals, url, cookies }) => {
+  if (!locals.isAdmin) {
+    error(401, "unauthorized");
+  }
+
   if (url.searchParams.has('logout')) {
     cookies.delete('admin-token', { path: '/' });
     redirect(303, '/');
