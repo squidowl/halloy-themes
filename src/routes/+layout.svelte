@@ -1,9 +1,18 @@
 <script lang="ts">
   import '../app.css';
-  let { children } = $props();
+
+  import Navigation from '$lib/components/Navigation.svelte';
+
+  let { data, children } = $props();
 </script>
 
-{@render children()}
+<div class="text-white" style="font-family: Inter, sans-serif;">
+  <Navigation isAdmin={data.isAdmin} />
+
+  <div class="w-full pt-16">
+    {@render children()}
+  </div>
+</div>
 
 <style global>
   :global(html),

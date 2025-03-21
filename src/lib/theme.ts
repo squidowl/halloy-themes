@@ -29,10 +29,10 @@ export const load = async (): Promise<Theme[]> => {
 export const submissions = async (): Promise<Theme[]> => {
   return (await db.pool
     .select({
-      name: db.themes.name,
-      colors: db.themes.colors,
-      encoded: db.themes.encoded,
-      createdOn: db.themes.createdOn,
+      name: db.submissions.name,
+      colors: db.submissions.colors,
+      encoded: db.submissions.encoded,
+      createdOn: db.submissions.createdOn,
     })
     .from(db.submissions)) as Theme[];
 };
