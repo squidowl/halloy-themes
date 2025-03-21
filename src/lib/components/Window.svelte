@@ -38,7 +38,7 @@
       style={`background-color: ${theme.general?.background}; color: ${theme.text?.primary};`}
     >
       <!-- Left sidebar -->
-      <div class="w-fit" style={`background-color: ${theme.general?.background};`}>
+      <div class="hidden w-fit sm:block" style={`background-color: ${theme.general?.background};`}>
         <div class="p-2" style={`color: ${theme.text?.primary};`}>
           <div class="mb-1 pl-6">liberachat</div>
 
@@ -60,7 +60,7 @@
 
       <!-- Buffer -->
       <div
-        class="mr-3 mb-3 rounded-lg border"
+        class="mr-3 mb-3 ml-3 rounded-lg border"
         style={`border-color: ${theme.buffer?.border_selected};`}
       >
         <!-- Buffer header -->
@@ -152,7 +152,7 @@
           </div>
 
           <!-- Nick list -->
-          <div class="flex flex-col pl-2">
+          <div class="hidden sm:block flex-col pl-2">
             {#each ['@casperstorm', '@tarkah', '@andymandias', '+pixelcat', 'bob42', 'musicfan', 'snowdrop', 'qwerty', 'coffeemug'] as user}
               <div style={`color: ${nickname(_.trimStart(user, '@+'))};`}>
                 {user}
