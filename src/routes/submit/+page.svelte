@@ -2,23 +2,20 @@
   import Navigation from '$lib/components/Navigation.svelte';
   import { enhance } from '$app/forms';
 
+  import toast, { Toaster } from 'svelte-french-toast';
+
   export let form: any;
   export let onFileSelected: (event: { files: FileList }) => void;
 
   let files: FileList | null = null;
   let isDragging = false;
   let fileInput: HTMLInputElement;
-  let error = '';
-  let success = '';
-  let isUploading = false;
 
   function handleFileSelect(event: Event) {
     const input = event.target as HTMLInputElement;
 
     if (input.files && input.files.length > 0) {
       files = input.files;
-      error = '';
-      success = '';
       onFileSelected?.({ files });
     }
   }
@@ -49,8 +46,6 @@
     if (event.dataTransfer?.files && event.dataTransfer.files.length > 0) {
       files = event.dataTransfer.files;
       fileInput.files = event.dataTransfer.files;
-      error = '';
-      success = '';
       onFileSelected?.({ files });
     }
   }
@@ -61,20 +56,23 @@
 
   function resetForm() {
     files = null;
-    error = '';
   }
 
   $: if (form) {
-    isUploading = false;
-
     if (form.success) {
-      success = form.message || 'File uploaded successfully!';
+      toast.success(form.message || 'File uploaded successfully!', {
+        className: 'mt-4'
+      });
       resetForm();
     } else if (form.error) {
-      error = form.error;
+      toast.error(form.error, {
+        className: 'mt-4'
+      });
     }
   }
 </script>
+
+<Toaster />
 
 <div class="text-white" style="font-family: Inter, sans-serif;">
   <Navigation />
@@ -83,11 +81,6 @@
       <form
         method="POST"
         enctype="multipart/form-data"
-        use:enhance={() => {
-          isUploading = true;
-          error = '';
-          success = '';
-        }}
         class="space-y-6"
       >
         <input
@@ -99,6 +92,13 @@
           class="hidden"
         />
 
+        <div>
+          <p>Share your favorite theme with our community!</p>
+          <p class="text-white/40">
+            Once submitted, your theme will be reviewed and approved by a maintainer before being
+            listed on the site.
+          </p>
+        </div>
         <div
           on:click={triggerFileInput}
           on:keydown={(e) => (e.key === 'Enter' || e.key === ' ' ? triggerFileInput() : null)}
@@ -108,7 +108,7 @@
           on:drop={handleDrop}
           tabindex="0"
           role="button"
-          class="cursor-pointer rounded-lg border-2 border-dashed border-gray-500/40 p-8 text-center transition-colors duration-200 hover:border-gray-500 {isDragging
+          class="cursor-pointer rounded-lg border-2 border-dashed border-gray-500/40 p-8 text-center transition-colors duration-200 hover:border-gray-500 hover:bg-gray-500/20 {isDragging
             ? 'bg-gray-500/40'
             : ''}"
         >
@@ -130,32 +130,12 @@
           </div>
         </div>
 
-        {#if error}
-          <div class="rounded-lg border border-red-400 bg-red-200 p-4">
-            <div class="flex items-center">
-              <p class="text-red-700">{error}</p>
-            </div>
-          </div>
-        {/if}
-
-        {#if success}
-          <div class="mb-4 rounded-lg border border-green-200 bg-green-50 p-4">
-            <div class="flex items-center justify-center">
-              <p class="text-green-700">{success}</p>
-            </div>
-          </div>
-        {/if}
-
         <button
           type="submit"
-          disabled={!files || files.length === 0 || isUploading}
-          class="cursor-pointer flex w-full justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-blue-300"
+          disabled={!files || files.length === 0}
+          class="flex w-full cursor-pointer justify-center rounded-md bg-blue-600 px-4 py-2 text-black shadow-sm transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-blue-300 disabled:text-black/40"
         >
-          {#if isUploading}
-            Uploading...
-          {:else}
-            Submit theme
-          {/if}
+          Submit
         </button>
       </form>
     </div>
