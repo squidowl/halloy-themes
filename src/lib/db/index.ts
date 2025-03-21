@@ -1,6 +1,7 @@
 import { neon, neonConfig } from '@neondatabase/serverless';
 import { drizzle } from 'drizzle-orm/neon-http';
 import { env } from '$env/dynamic/private';
+import { themes, submissions } from '$lib/db/schema';
 
 const CONNECTION_URL = env.NEON_DATABASE_URL ?? 'postgres://postgres:postgres@localhost:5432/main';
 
@@ -9,6 +10,10 @@ neonConfig.fetchEndpoint = (host) => {
   return `${protocol}://${host}:${port}/sql`;
 };
 
-export const db = drizzle({ client: neon(CONNECTION_URL), casing: 'snake_case' });
+const pool = drizzle({ client: neon(CONNECTION_URL), casing: 'snake_case' });
 
-export { themes } from '$lib/db/schema';
+export default {
+  submissions,
+  pool,
+  themes,
+};

@@ -7,3 +7,11 @@ export const themes = pgTable('theme', {
   encoded: text().notNull(),
   createdOn: timestamp().notNull().defaultNow()
 });
+
+export const submissions = pgTable('submission', {
+  id: serial('submission_id').primaryKey(),
+  name: text().notNull(),
+  colors: json().notNull(),
+  encoded: text().notNull(),
+  createdOn: timestamp().notNull().defaultNow()
+});

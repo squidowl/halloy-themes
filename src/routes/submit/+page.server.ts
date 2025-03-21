@@ -33,14 +33,13 @@ export const actions: Actions = {
     }
 
     try {
+      if (await theme.nameExists(themeName)) {
+        return fail(400, { error: 'Theme name already exists, choose a new name' });
+      }
+
       await theme.submit(themeName, colors);
     } catch (e: any) {
-      if (e instanceof Error) {
-        if (e.message.startsWith('duplicate key')) {
-          return fail(500, { error: 'Theme name already exists, choose a new name' });
-        }
-      }
-      return fail(500, { error: e.message });
+      return fail(500, { error: "Failed to submit theme" });
     }
 
     return {

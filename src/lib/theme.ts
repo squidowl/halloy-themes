@@ -1,5 +1,6 @@
+import { eq } from 'drizzle-orm';
 import { encode as _encode, decode as _decode } from 'theme';
-import { db, themes } from '$lib/db';
+import db from '$lib/db';
 
 export const encode = (colors: Colors): string => {
   return _encode(colors);
@@ -11,23 +12,40 @@ export const decode = (encoded: string): Colors => {
 
 export const submit = async (name: string, colors: Colors) => {
   const encoded = encode(colors);
-  await db.insert(themes).values({ name, colors, encoded });
+  await db.pool.insert(db.submissions).values({ name, colors, encoded });
 };
 
 export const load = async (): Promise<Theme[]> => {
-  return (await db
+  return (await db.pool
     .select({
-      name: themes.name,
-      colors: themes.colors,
-      encoded: themes.encoded
+      name: db.themes.name,
+      colors: db.themes.colors,
+      encoded: db.themes.encoded,
+      createdOn: db.themes.createdOn,
     })
-    .from(themes)) as Theme[];
+    .from(db.themes)) as Theme[];
+};
+
+export const submissions = async (): Promise<Theme[]> => {
+  return (await db.pool
+    .select({
+      name: db.themes.name,
+      colors: db.themes.colors,
+      encoded: db.themes.encoded,
+      createdOn: db.themes.createdOn,
+    })
+    .from(db.submissions)) as Theme[];
+};
+
+export const nameExists = async (name: string) => {
+  return await db.pool.$count(db.themes, eq(db.themes.name, name)) > 0;
 };
 
 export interface Theme {
   name: string;
   colors: Colors;
   encoded: string;
+  createdOn: Date,
 }
 
 export interface Colors {
