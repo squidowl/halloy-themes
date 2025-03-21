@@ -1,30 +1,29 @@
 <script lang="ts">
+  import { enhance } from '$app/forms';
   import Navigation from '$lib/components/Navigation.svelte';
   import toast, { Toaster } from 'svelte-french-toast';
+  import type { PageProps } from './$types';
 
-  // TODO: Move to type.
-  export let form: any;
+  let { form }: PageProps = $props();
+  let themeName: string = $state('');
+  let halloyUrl: string = $state('');
 
-  let themeName: string = '';
-  let encodedTheme: string = '';
-
-  function resetForm() {
-    encodedTheme = '';
-    themeName = '';
-  }
-
-  $: if (form) {
-    if (form.success) {
-      toast.success(form.message || 'File uploaded successfully!', {
+  $effect(() => {
+    if (form?.success) {
+      toast.success(form.message, {
         className: 'mt-4'
       });
-      resetForm();
-    } else if (form.error) {
-      toast.error(form.error, {
+    } else if (form?.invalid) {
+      halloyUrl = '';
+      toast.error('Failed to decode theme. Ensure it is valid and try again.', {
+        className: 'mt-4'
+      });
+    } else if (form?.error) {
+      toast.error(form?.error, {
         className: 'mt-4'
       });
     }
-  }
+  });
 </script>
 
 <Toaster />
@@ -33,7 +32,7 @@
   <Navigation />
   <div class="flex w-full justify-center px-6 pt-16">
     <div class="w-full max-w-xl pt-16">
-      <form method="POST" enctype="multipart/form-data" class="space-y-6">
+      <form use:enhance method="POST" class="space-y-6">
         <div>
           <p>Share your favorite theme with our community!</p>
           <p class="text-white/40">
@@ -52,14 +51,14 @@
           <input
             class="mb-2 h-10 w-full rounded-lg border border-gray-500/40 px-2 placeholder-white/25 focus:outline-none"
             placeholder="halloy:///theme?e=ACspLf8BT0dN_wIyMDT_A_-gev8E_s2y..."
-            name="encodedTheme"
-            bind:value={encodedTheme}
+            name="halloyUrl"
+            bind:value={halloyUrl}
           />
         </div>
 
         <button
           type="submit"
-          disabled={!encodedTheme || !themeName}
+          disabled={!halloyUrl || !themeName}
           class="flex w-full cursor-pointer justify-center rounded-md bg-blue-600 px-4 py-2 text-black shadow-sm transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-blue-300 disabled:text-black/40"
         >
           Submit

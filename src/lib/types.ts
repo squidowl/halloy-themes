@@ -1,11 +1,3 @@
-export interface Item {
-  name: string;
-  theme: Theme;
-  encoded: string;
-  submittedBy: string;
-}
-
-
 export interface Theme {
   general?: {
     background?: string;

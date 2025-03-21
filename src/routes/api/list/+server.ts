@@ -3,8 +3,18 @@ import type { RequestHandler } from './$types';
 
 import { db } from '$lib';
 import { themes } from '$lib/db';
+import type { Theme } from '$lib/types';
 
-export const GET: RequestHandler = async ({}) => {
+export interface Body {
+  items: {
+    name: string;
+    theme: Theme;
+    encoded: string;
+    submittedBy: string;
+  }[];
+};
+
+export const GET: RequestHandler = async ({ }) => {
   const items = await db
     .select({
       name: themes.name,
