@@ -38,7 +38,7 @@
       style={`background-color: ${theme.general?.background}; color: ${theme.text?.primary};`}
     >
       <!-- Left sidebar -->
-      <div class="hidden w-fit sm:block" style={`background-color: ${theme.general?.background};`}>
+      <div class="hidden w-fit md:block" style={`background-color: ${theme.general?.background};`}>
         <div class="p-2" style={`color: ${theme.text?.primary};`}>
           <div class="mb-1 pl-6">liberachat</div>
 
