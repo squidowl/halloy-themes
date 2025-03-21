@@ -5,10 +5,12 @@
   // TODO: Move to type.
   export let form: any;
 
-  let encodedTheme: string = "";
+  let themeName: string = '';
+  let encodedTheme: string = '';
 
   function resetForm() {
-    encodedTheme = "";
+    encodedTheme = '';
+    themeName = '';
   }
 
   $: if (form) {
@@ -40,16 +42,24 @@
           </p>
         </div>
 
-        <input
-          class="h-10 w-full rounded-lg border border-gray-500/40 px-2 placeholder-white/25 focus:outline-none"
-          placeholder="halloy:///theme?e=ACspLf8BT0dN_wIyMDT_A_-gev8E_s2y..."
-          name="encodedTheme"
-          bind:value={encodedTheme}
-        />
+        <div>
+          <input
+            class="mb-2 h-10 w-full rounded-lg border border-gray-500/40 px-2 placeholder-white/25 focus:outline-none"
+            placeholder="Theme name"
+            name="themeName"
+            bind:value={themeName}
+          />
+          <input
+            class="mb-2 h-10 w-full rounded-lg border border-gray-500/40 px-2 placeholder-white/25 focus:outline-none"
+            placeholder="halloy:///theme?e=ACspLf8BT0dN_wIyMDT_A_-gev8E_s2y..."
+            name="encodedTheme"
+            bind:value={encodedTheme}
+          />
+        </div>
 
         <button
           type="submit"
-          disabled={!encodedTheme}
+          disabled={!encodedTheme || !themeName}
           class="flex w-full cursor-pointer justify-center rounded-md bg-blue-600 px-4 py-2 text-black shadow-sm transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-blue-300 disabled:text-black/40"
         >
           Submit
