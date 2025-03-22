@@ -32,6 +32,10 @@ generate name env="dev":
 migrate env="dev":
     npx drizzle-kit migrate --config ./drizzle.config.{{env}}.ts
 
+# Drizzle studio
+studio env="dev":
+    npx drizzle-kit studio --config ./drizzle.config.{{env}}.ts
+
 # Run dev environment
 dev host="localhost": up migrate
     #!/usr/bin/env bash

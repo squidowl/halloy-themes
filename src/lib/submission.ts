@@ -1,6 +1,5 @@
 import { eq } from 'drizzle-orm';
 import db from './db';
-import { submissions } from './db/schema';
 import type { Colors } from './theme';
 
 export const load = async (): Promise<Submission[]> => {
@@ -21,18 +20,18 @@ export const approve = async (id: number) => {
   const { name, colors, encoded } = (
     await db.pool
       .delete(db.submissions)
-      .where(eq(submissions.id, id))
+      .where(eq(db.submissions.id, id))
       .returning({
-        name: submissions.name,
-        colors: submissions.colors,
-        encoded: submissions.encoded
+        name: db.submissions.name,
+        colors: db.submissions.colors,
+        encoded: db.submissions.encoded
       })
   )[0];
   await db.pool.insert(db.themes).values({ name, colors, encoded });
 };
 
 export const reject = async (id: number) => {
-  await db.pool.delete(db.submissions).where(eq(submissions.id, id));
+  await db.pool.delete(db.submissions).where(eq(db.submissions.id, id));
 };
 
 export interface Submission {
