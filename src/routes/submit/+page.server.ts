@@ -39,7 +39,7 @@ export const actions: Actions = {
 
       await theme.submit(themeName, colors);
     } catch (e: any) {
-      return fail(500, { error: "Failed to submit theme" });
+      return fail(500, { error: 'Failed to submit theme' });
     }
 
     return {

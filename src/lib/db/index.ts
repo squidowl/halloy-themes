@@ -15,5 +15,5 @@ const pool = drizzle({ client: neon(CONNECTION_URL), casing: 'snake_case' });
 export default {
   submissions,
   pool,
-  themes,
+  themes
 };

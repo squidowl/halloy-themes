@@ -7,7 +7,7 @@
 <div class="flex justify-center px-6">
   <div class="w-full max-w-xl space-y-6 pt-16">
     {#if showLogin}
-      <form action="/admin" method="POST" class="space-y-6">
+      <form action="?/login" method="POST" class="space-y-6">
         <div>
           <input
             class="mb-2 h-10 w-full rounded-lg border border-gray-500/40 px-2 placeholder-white/25 focus:outline-none"

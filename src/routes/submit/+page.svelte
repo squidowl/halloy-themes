@@ -1,6 +1,6 @@
 <script lang="ts">
   import { enhance } from '$app/forms';
-  import toast, { Toaster } from 'svelte-french-toast';
+  import toast from 'svelte-french-toast';
   import type { PageProps } from './$types';
 
   let { form }: PageProps = $props();
@@ -24,8 +24,6 @@
     }
   });
 </script>
-
-<Toaster />
 
 <div class="flex justify-center px-6">
   <div class="w-full max-w-xl pt-16">

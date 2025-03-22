@@ -21,31 +21,20 @@ export const load = async (): Promise<Theme[]> => {
       name: db.themes.name,
       colors: db.themes.colors,
       encoded: db.themes.encoded,
-      createdOn: db.themes.createdOn,
+      createdOn: db.themes.createdOn
     })
     .from(db.themes)) as Theme[];
 };
 
-export const submissions = async (): Promise<Theme[]> => {
-  return (await db.pool
-    .select({
-      name: db.submissions.name,
-      colors: db.submissions.colors,
-      encoded: db.submissions.encoded,
-      createdOn: db.submissions.createdOn,
-    })
-    .from(db.submissions)) as Theme[];
-};
-
 export const nameExists = async (name: string) => {
-  return await db.pool.$count(db.themes, eq(db.themes.name, name)) > 0;
+  return (await db.pool.$count(db.themes, eq(db.themes.name, name))) > 0;
 };
 
 export interface Theme {
   name: string;
   colors: Colors;
   encoded: string;
-  createdOn: Date,
+  createdOn: Date;
 }
 
 export interface Colors {
