@@ -1,7 +1,6 @@
 import { env } from '$env/dynamic/private';
 import { error, fail, redirect, type Actions } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
-import * as submission from '$lib/submission';
 
 export const load: PageServerLoad = async ({ locals, url, cookies }) => {
   if (!locals.isAdmin) {
@@ -12,10 +11,6 @@ export const load: PageServerLoad = async ({ locals, url, cookies }) => {
     cookies.delete('admin-token', { path: '/' });
     redirect(303, '/');
   }
-
-  return {
-    submissions: await submission.load()
-  };
 };
 
 export const actions: Actions = {
