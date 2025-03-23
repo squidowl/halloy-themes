@@ -25,7 +25,7 @@ export const actions: Actions = {
 
     if (password == env.ADMIN_PASSWORD) {
       cookies.set('admin-token', env.ADMIN_TOKEN!, { path: '/' });
-      redirect(303, '/admin');
+      redirect(303, '/admin/submissions');
     }
 
     return fail(401);

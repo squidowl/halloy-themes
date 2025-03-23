@@ -19,8 +19,8 @@
 
         <button
           type="submit"
-          class="flex w-full text-white font-bold cursor-pointer justify-center rounded-md px-4 py-2 shadow-sm transition-colors disabled:cursor-not-allowed bg-[#50a9d9] hover:bg-[#3b92c2] disabled:bg-[#a1cde4] disabled:text-black/40"
-          >
+          class="flex w-full cursor-pointer justify-center rounded-md bg-[#50a9d9] px-4 py-2 font-bold text-white shadow-sm transition-colors hover:bg-[#3b92c2] disabled:cursor-not-allowed disabled:bg-[#a1cde4] disabled:text-black/40"
+        >
           Login
         </button>
       </form>
