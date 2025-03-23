@@ -14,6 +14,9 @@ importers:
       '@fontsource/iosevka':
         specifier: ^5.2.5
         version: 5.2.5
+      '@iarna/toml':
+        specifier: ^2.2.5
+        version: 2.2.5
       '@svelte-plugins/tooltips':
         specifier: 4.0.0-beta.1
         version: 4.0.0-beta.1(svelte@5.25.0)
@@ -826,6 +829,9 @@ packages:
   '@humanwhocodes/retry@0.4.2':
     resolution: {integrity: sha512-xeO57FpIu4p1Ri3Jq/EXq4ClRm86dVF2z/+kvFnyqVYRavTZmaFaUBbWCOuuTh0o/g7DSsk6kc2vrS4Vl5oPOQ==}
     engines: {node: '>=18.18'}
+
+  '@iarna/toml@2.2.5':
+    resolution: {integrity: sha512-trnsAYxU3xnS1gPHPyU961coFyLkh4gAD/0zQ5mymY4yOZ+CYvsPqUbOFSw0aDM4y0tV7tiFxL/1XfXPNC6IPg==}
 
   '@iconify/json@2.2.319':
     resolution: {integrity: sha512-ZGX8O3PXDxXdgltuW2JlXa7IuZ6uc34qKVIBRyPNo63fxjbw7rSOox7HKi3fJyhXqoL3aN0AtK1yOb5Cgcte8w==}
@@ -3511,6 +3517,8 @@ snapshots:
   '@humanwhocodes/retry@0.3.1': {}
 
   '@humanwhocodes/retry@0.4.2': {}
+
+  '@iarna/toml@2.2.5': {}
 
   '@iconify/json@2.2.319':
     dependencies:

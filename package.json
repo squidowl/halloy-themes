@@ -59,6 +59,8 @@
   "dependencies": {
     "@fontsource/inter": "^5.2.5",
     "@fontsource/iosevka": "^5.2.5",
+    "@svelte-plugins/tooltips": "4.0.0-beta.1",
+    "@iarna/toml": "^2.2.5",
     "@zerodevx/svelte-json-view": "^1.0.11",
     "svelte-french-toast": "^1.2.0"
   }

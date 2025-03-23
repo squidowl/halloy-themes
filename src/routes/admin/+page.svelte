@@ -3,7 +3,9 @@
   import Window from '$lib/components/Window.svelte';
   import { enhance } from '$app/forms';
   import toast from 'svelte-french-toast';
-  import PreviewIcon from '~icons/qlementine-icons/preview-16'
+  import JSONIcon from '~icons/qlementine-icons/preview-16';
+  import PreviewIcon from '~icons/icon-park-outline/preview-open';
+  import { Tooltip } from '@svelte-plugins/tooltips';
 
   const { data, form }: PageProps = $props();
 
@@ -31,11 +33,15 @@
         <form use:enhance method="POST">
           <input hidden={true} name="id" value={submission.id} />
           <div class="flex items-center space-x-4">
-            <div>
+            <Tooltip content="Preview in Halloy">
+              <a href="halloy:///theme?e={submission.encoded}"><PreviewIcon /></a>
+            </Tooltip>
+            <Tooltip content="View JSON">
               <a href={`/admin/json/${submission.encoded}`}>
-                <PreviewIcon />
+                <JSONIcon />
               </a>
-            </div>
+            </Tooltip>
+
             <div>
               <button
                 class="flex h-8 cursor-pointer items-center justify-center rounded-md bg-[#4caf50] px-4 py-2 text-white shadow-sm transition-colors hover:bg-[#3d8b40] disabled:cursor-not-allowed disabled:bg-[#a9d6aa] disabled:text-black/40"
@@ -54,3 +60,9 @@
     </div>
   {/each}
 </div>
+
+<style>
+  :global(.tooltip.default) {
+    --tooltip-background-color: rgba(70, 70, 70, 0.932);
+  }
+</style>
