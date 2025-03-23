@@ -22,9 +22,14 @@
   });
 </script>
 
-<div class="flex flex-wrap justify-center gap-4 p-2">
+<div class="flex flex-wrap justify-center gap-0 p-2 pt-0 sm:gap-8 sm:pt-8">
+  {#if !data.submissions || data.submissions.length === 0}
+    <div class="mt-4">
+      <p class="text-lg text-white/40">No pending submissions</p>
+    </div>
+  {/if}
   {#each data.submissions as submission}
-    <div class="p-4">
+    <div class="pt-8 sm:pt-0">
       <Window theme={submission} />
       <div class="mt-2 flex flex-row items-center justify-between">
         <div class="text-md">

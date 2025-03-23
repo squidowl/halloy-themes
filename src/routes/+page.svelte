@@ -35,9 +35,9 @@
   }
 </script>
 
-<div class="flex flex-wrap justify-center gap-4 p-2">
+<div class="flex flex-wrap justify-center gap-0 p-2 pt-0 sm:gap-8 sm:pt-8">
   {#each data.themes as theme}
-    <div class="p-4">
+    <div class="pt-8 sm:pt-0">
       <Window {theme} />
       <div class="flex flex-row items-center justify-between">
         <p class="text-md mt-2">
