@@ -17,6 +17,9 @@ importers:
       '@svelte-plugins/tooltips':
         specifier: 4.0.0-beta.1
         version: 4.0.0-beta.1(svelte@5.25.0)
+      '@zerodevx/svelte-json-view':
+        specifier: ^1.0.11
+        version: 1.0.11(svelte@5.25.0)
       svelte-french-toast:
         specifier: ^1.2.0
         version: 1.2.0(svelte@5.25.0)
@@ -1344,6 +1347,11 @@ packages:
 
   '@vercel/static-config@3.0.0':
     resolution: {integrity: sha512-2qtvcBJ1bGY0dYGYh3iM7yGKkk971FujLEDXzuW5wcZsPr1GSEjO/w2iSr3qve6nDDtBImsGoDEnus5FI4+fIw==}
+
+  '@zerodevx/svelte-json-view@1.0.11':
+    resolution: {integrity: sha512-mIjj0H1al/P4FPlbeDoiey93lNEUqBEAe5LIdD5GttZfEYt3awexD2lHwKNfUeY4jHizOJkoWTPN/2iO0GBqpw==}
+    peerDependencies:
+      svelte: ^3.57.0 || ^4.0.0 || ^5.0.0
 
   abbrev@3.0.0:
     resolution: {integrity: sha512-+/kfrslGQ7TNV2ecmQwMJj/B65g5KVq1/L3SGVZ3tCYGqlzFuFCGBZJtMP99wH3NpEUyAjn0zPdPUg0D+DwrOA==}
@@ -4125,6 +4133,10 @@ snapshots:
       ajv: 8.6.3
       json-schema-to-ts: 1.6.4
       ts-morph: 12.0.0
+
+  '@zerodevx/svelte-json-view@1.0.11(svelte@5.25.0)':
+    dependencies:
+      svelte: 5.25.0
 
   abbrev@3.0.0: {}
 

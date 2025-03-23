@@ -14,7 +14,7 @@
 </script>
 
 <div
-  class="group relative w-full overflow-hidden rounded-lg border border border-gray-500 text-sm shadow-lg"
+  class="group relative w-full overflow-hidden rounded-lg border border-gray-500 text-sm shadow-lg"
   style="font-family: 'Iosevka', monospace;"
 >
   <a href="halloy:///theme?e={theme.encoded}">

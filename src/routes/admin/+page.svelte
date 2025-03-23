@@ -3,6 +3,7 @@
   import Window from '$lib/components/Window.svelte';
   import { enhance } from '$app/forms';
   import toast from 'svelte-french-toast';
+  import PreviewIcon from '~icons/qlementine-icons/preview-16'
 
   const { data, form }: PageProps = $props();
 
@@ -29,7 +30,12 @@
         </div>
         <form use:enhance method="POST">
           <input hidden={true} name="id" value={submission.id} />
-          <div class="flex space-x-4">
+          <div class="flex items-center space-x-4">
+            <div>
+              <a href={`/admin/json/${submission.encoded}`}>
+                <PreviewIcon />
+              </a>
+            </div>
             <div>
               <button
                 class="flex h-8 cursor-pointer items-center justify-center rounded-md bg-[#4caf50] px-4 py-2 text-white shadow-sm transition-colors hover:bg-[#3d8b40] disabled:cursor-not-allowed disabled:bg-[#a9d6aa] disabled:text-black/40"

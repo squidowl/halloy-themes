@@ -1,8 +1,6 @@
 <script lang="ts">
   import { enhance } from '$app/forms';
   import toast from 'svelte-french-toast';
-  import InfoIcon from '~icons/fe/info'
-  import { Tooltip } from "@svelte-plugins/tooltips";
 
   import type { PageProps } from './$types';
 
