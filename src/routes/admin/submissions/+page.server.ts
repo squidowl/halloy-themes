@@ -19,6 +19,17 @@ export const load: PageServerLoad = async ({ locals, url, cookies }) => {
 };
 
 export const actions: Actions = {
+    login: async ({ request, cookies }) => {
+        const form = await request.formData();
+        const password = form.get('password')?.toString() ?? '';
+
+        if (password == env.ADMIN_PASSWORD) {
+            cookies.set('admin-token', env.ADMIN_TOKEN!, { path: '/' });
+            redirect(303, '/admin/submissions');
+        }
+
+        return fail(401);
+    },
     approve: async ({ request, locals }) => {
         if (!locals.isAdmin) {
             error(401, 'unauthorized');
