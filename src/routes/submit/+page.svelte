@@ -1,12 +1,11 @@
 <script lang="ts">
   import { enhance } from '$app/forms';
   import toast from 'svelte-french-toast';
-
   import type { PageProps } from './$types';
 
   let { form, data }: PageProps = $props();
   let themeName: string = $state('');
-  let halloyUrl: string = $state(data.maybeQuery ?? '');
+  let halloyUrl: string = $state(data.halloyUrl ?? '');
 
   $effect(() => {
     if (form?.success) {

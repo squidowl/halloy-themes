@@ -5,15 +5,20 @@ import { fail } from '@sveltejs/kit';
 
 import * as theme from '$lib/theme';
 import { notify } from '$lib/notification';
+import type { PageServerLoad } from '../$types';
 
-export const load = (event) => {
-  return {
-    maybeQuery: event.url.searchParams.get("e")
+export const load: PageServerLoad = (event) => {
+  const param = event.url.searchParams.get("e");
+
+  if (param) {
+    return {
+      halloyUrl: `halloy:///theme?e=${param}`,
+    }
   }
 }
 
 export const actions: Actions = {
-  default: async ({ request, url }) => {
+  default: async ({ request }) => {
     const formData = await request.formData();
     const themeName = formData.get('themeName')?.toString();
     const halloyUrl = formData.get('halloyUrl')?.toString();
