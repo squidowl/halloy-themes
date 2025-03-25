@@ -5,8 +5,14 @@ import { fail } from '@sveltejs/kit';
 
 import * as theme from '$lib/theme';
 
+export const load = (event) => {
+  return {
+    maybeQuery: event.url.searchParams.get("e")
+  }
+}
+
 export const actions: Actions = {
-  default: async ({ request }) => {
+  default: async ({ request, url }) => {
     const formData = await request.formData();
     const themeName = formData.get('themeName')?.toString();
     const halloyUrl = formData.get('halloyUrl')?.toString();

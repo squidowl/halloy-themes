@@ -4,9 +4,9 @@
 
   import type { PageProps } from './$types';
 
-  let { form }: PageProps = $props();
+  let { form, data }: PageProps = $props();
   let themeName: string = $state('');
-  let halloyUrl: string = $state('');
+  let halloyUrl: string = $state(data.maybeQuery ?? '');
 
   $effect(() => {
     if (form?.success) {
