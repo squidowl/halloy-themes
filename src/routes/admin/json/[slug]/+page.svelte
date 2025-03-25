@@ -5,6 +5,6 @@
   const { data }: PageProps = $props();
 </script>
 
-<div class="text-sm p-4" style="font-family: 'Iosevka', monospace;">
+<div class="p-4 text-sm" style="font-family: 'Iosevka', monospace;">
   <JsonView json={data.json} />
 </div>

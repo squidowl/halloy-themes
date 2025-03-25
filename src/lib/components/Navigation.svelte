@@ -43,7 +43,7 @@
           <li>
             <a
               data-sveltekit-reload
-              href="/admin/?logout"
+              href="/admin?logout"
               class="transition-colors duration-200 hover:text-[#fecdb2]">Logout</a
             >
           </li>

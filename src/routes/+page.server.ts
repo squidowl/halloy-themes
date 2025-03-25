@@ -24,7 +24,6 @@ export const actions = {
         toml,
         filename: `${name}.toml`
       };
-
     } catch (error) {
       return {
         success: false,
@@ -34,9 +33,8 @@ export const actions = {
   }
 };
 
-
-export const load: PageServerLoad = async ({ }) => {
+export const load: PageServerLoad = async ({}) => {
   return {
-    themes: await theme.load(),
+    themes: await theme.load()
   };
 };
