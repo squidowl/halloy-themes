@@ -4,6 +4,7 @@ import { decode } from 'theme';
 import { fail } from '@sveltejs/kit';
 
 import * as theme from '$lib/theme';
+import { notify } from '$lib/notification';
 
 export const load = (event) => {
   return {
@@ -47,6 +48,8 @@ export const actions: Actions = {
     } catch (e: any) {
       return fail(500, { error: 'Failed to submit theme' });
     }
+
+    await notify('Theme submitted', `${themeName}\n\nhttps://themes.halloy.chat/admin/submissions`);
 
     return {
       success: true,
