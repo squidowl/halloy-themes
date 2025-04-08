@@ -96,7 +96,7 @@
               <span style={`color: ${nickname('casperstorm')};`}>@casperstorm</span>
               <span
                 ><span style={`color: ${colors.buffer?.url};`}
-                  ><a href="https://halloy.squidowl.org">https://halloy.squidowl.org</a>/</span
+                  ><a href="https://halloy.chat/">https://halloy.chat/</a>/</span
                 ></span
               >
             </div>
