@@ -1,2 +1,6 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
+
+.selection-color::selection {
+  background: var(--selection-color);
+}
