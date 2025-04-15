@@ -59,11 +59,18 @@
             <span>#glirc</span>
           </div>
           <div
-            class="rounded-lg px-6 py-1"
-            style={`background-color: ${colors.buttons?.primary?.background_selected};`}
+            class="rounded-lg px-6 py-1 bg-[var(--bg-color)] hover:bg-[var(--hover-bg-color)]"
+            style={`--bg-color: ${colors.buttons?.primary?.background_selected}; --hover-bg-color: ${colors.buttons?.primary?.background_selected_hover};`}
           >
             <span class="mr-0.5" style={`visibility: hidden;`}>•</span>
             <span>#halloy</span>
+          </div>
+          <div
+            class="rounded-lg px-6 py-1 bg-[var(--bg-color)] hover:bg-[var(--hover-bg-color)]"
+            style={`--bg-color: ${colors.buttons?.primary?.background_hover}; --hover-bg-color: ${colors.buttons?.primary?.background_selected};`}
+          >
+            <span class="mr-0.5" style={`visibility: hidden;`}>•</span>
+            <span>#libera</span>
           </div>
         </div>
       </div>
