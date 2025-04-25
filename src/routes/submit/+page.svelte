@@ -31,8 +31,8 @@
       <div>
         <p>Share your favorite theme with our community!</p>
         <p class="text-white/40">
-          Copy the encoded theme URL string from Halloy's Theme Editor. Once submitted, your theme
-          will be reviewed and approved by a maintainer before being listed on the site.
+          Copy the encoded theme URL from Halloy's Theme Editor or provide the URL to a TOML file.
+          Once submitted, your theme will be reviewed and approved by a maintainer before being listed on the site.
         </p>
       </div>
 
