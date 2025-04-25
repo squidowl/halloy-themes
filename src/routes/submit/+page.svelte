@@ -6,6 +6,7 @@
   let { form, data }: PageProps = $props();
   let themeName: string = $state('');
   let halloyUrl: string = $state(data.halloyUrl ?? '');
+  let loading: boolean =  $state(false);
 
   $effect(() => {
     if (form?.success) {
@@ -22,12 +23,13 @@
         className: 'mt-4'
       });
     }
+    loading = false;
   });
 </script>
 
 <div class="flex justify-center px-6">
   <div class="w-full max-w-xl pt-16">
-    <form use:enhance method="POST" class="space-y-6">
+    <form use:enhance={() => { loading = true; }} method="POST" class="space-y-6">
       <div>
         <p>Share your favorite theme with our community!</p>
         <p class="text-white/40">
@@ -59,10 +61,14 @@
 
       <button
         type="submit"
-        disabled={!halloyUrl || !themeName}
+        disabled={!halloyUrl || !themeName || loading}
         class="flex w-full cursor-pointer justify-center rounded-md bg-[#50a9d9] px-4 py-2 font-bold text-white shadow-sm transition-colors hover:bg-[#3b92c2] disabled:cursor-not-allowed disabled:bg-[#a1cde4] disabled:text-black/40"
       >
-        Submit
+        {#if loading}
+          <span>Submitting...</span>
+        {:else}
+          Submit
+        {/if}
       </button>
     </form>
   </div>
