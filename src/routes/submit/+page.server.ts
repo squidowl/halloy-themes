@@ -14,7 +14,7 @@ export const load: PageServerLoad = (event) => {
 
   if (param) {
     return {
-      halloyUrl: `halloy:///theme?e=${param}`,
+      themeUrl: `halloy:///theme?e=${param}`,
     }
   }
 }
@@ -23,7 +23,7 @@ export const actions: Actions = {
   default: async ({ request }) => {
     const formData = await request.formData();
     const themeName = formData.get('themeName')?.toString();
-    const themeUrl = formData.get('halloyUrl')?.toString();
+    const themeUrl = formData.get('themeUrl')?.toString();
 
     if (!themeName) {
       return fail(400, { error: 'Missing theme name' });
@@ -43,16 +43,18 @@ export const actions: Actions = {
         }
 
         colors = decode(encoded);
-       } else if (themeUrl.endsWith('.toml')) { // External URL with TOML file
-          const response = await fetch(themeUrl);
+      } else if (themeUrl.endsWith('.toml')) { // External URL with TOML file
+        const response = await fetch(themeUrl);
 
-          if (!response.ok) {
-            return fail(400, { error: 'Failed to fetch theme from URL' });
-          }
+        if (!response.ok) {
+          return fail(400, { error: 'Failed to fetch theme from URL' });
+        }
 
-          const tomlString = await response.text();
-          colors = TOML.parse(tomlString);
-       }
+        const tomlString = await response.text();
+        colors = TOML.parse(tomlString);
+      } else {
+        return fail(400, { invalid: true });
+      }
     } catch (e) {
       return fail(400, { invalid: true });
     }

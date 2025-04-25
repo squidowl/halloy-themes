@@ -5,7 +5,7 @@
 
   let { form, data }: PageProps = $props();
   let themeName: string = $state('');
-  let halloyUrl: string = $state(data.halloyUrl ?? '');
+  let themeUrl: string = $state(data.themeUrl ?? '');
   let loading: boolean =  $state(false);
 
   $effect(() => {
@@ -14,7 +14,7 @@
         className: 'mt-4'
       });
     } else if (form?.invalid) {
-      halloyUrl = '';
+      themeUrl = '';
       toast.error('Failed to decode theme. Ensure it is valid and try again.', {
         className: 'mt-4'
       });
@@ -54,14 +54,14 @@
         <input
           class="mb-2 h-10 w-full rounded-lg border border-gray-500/40 px-2 placeholder-white/25 focus:outline-none"
           placeholder="halloy:///theme?e=ACspLf8BT0dN_wIyMDT_A_-gev8E_s2y..."
-          name="halloyUrl"
-          bind:value={halloyUrl}
+          name="themeUrl"
+          bind:value={themeUrl}
         />
       </div>
 
       <button
         type="submit"
-        disabled={!halloyUrl || !themeName || loading}
+        disabled={!themeUrl || !themeName || loading}
         class="flex w-full cursor-pointer justify-center rounded-md bg-[#50a9d9] px-4 py-2 font-bold text-white shadow-sm transition-colors hover:bg-[#3b92c2] disabled:cursor-not-allowed disabled:bg-[#a1cde4] disabled:text-black/40"
       >
         {#if loading}
