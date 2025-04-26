@@ -1,3 +1,5 @@
+import * as TOML from '@iarna/toml';
+
 import type { Actions } from './$types';
 
 import { decode } from 'theme';
@@ -12,7 +14,7 @@ export const load: PageServerLoad = (event) => {
 
   if (param) {
     return {
-      halloyUrl: `halloy:///theme?e=${param}`,
+      themeUrl: `halloy:///theme?e=${param}`,
     }
   }
 }
@@ -21,25 +23,38 @@ export const actions: Actions = {
   default: async ({ request }) => {
     const formData = await request.formData();
     const themeName = formData.get('themeName')?.toString();
-    const halloyUrl = formData.get('halloyUrl')?.toString();
+    const themeUrl = formData.get('themeUrl')?.toString();
 
     if (!themeName) {
       return fail(400, { error: 'Missing theme name' });
     }
-    if (!halloyUrl) {
-      return fail(400, { error: 'Missing halloy url' });
+    if (!themeUrl) {
+      return fail(400, { error: 'Missing theme url' });
     }
 
     let encoded;
     let colors;
     try {
-      encoded = new URL(halloyUrl).searchParams.get('e');
+      if (themeUrl.startsWith('halloy:///theme')) { // Halloy URL with encoded colors
+        encoded = new URL(themeUrl).searchParams.get('e');
 
-      if (!encoded) {
+        if (!encoded) {
+          return fail(400, { invalid: true });
+        }
+
+        colors = decode(encoded);
+      } else if (themeUrl.endsWith('.toml')) { // External URL with TOML file
+        const response = await fetch(themeUrl);
+
+        if (!response.ok) {
+          return fail(400, { error: 'Failed to fetch theme from URL' });
+        }
+
+        const tomlString = await response.text();
+        colors = TOML.parse(tomlString);
+      } else {
         return fail(400, { invalid: true });
       }
-
-      colors = decode(encoded);
     } catch (e) {
       return fail(400, { invalid: true });
     }
