@@ -6,7 +6,7 @@
   let { form, data }: PageProps = $props();
   let themeName: string = $state('');
   let themeUrl: string = $state(data.themeUrl ?? '');
-  let loading: boolean =  $state(false);
+  let loading: boolean = $state(false);
 
   $effect(() => {
     if (form?.success) {
@@ -29,12 +29,19 @@
 
 <div class="flex justify-center px-6">
   <div class="w-full max-w-xl pt-16">
-    <form use:enhance={() => { loading = true; }} method="POST" class="space-y-6">
+    <form
+      use:enhance={() => {
+        loading = true;
+      }}
+      method="POST"
+      class="space-y-6"
+    >
       <div>
         <p>Share your favorite theme with our community!</p>
         <p class="text-white/40">
           Copy the encoded theme URL from Halloy's Theme Editor or provide the URL to a TOML file.
-          Once submitted, your theme will be reviewed and approved by a maintainer before being listed on the site.
+          Once submitted, your theme will be reviewed and approved by a maintainer before being
+          listed on the site.
         </p>
       </div>
 
@@ -49,7 +56,7 @@
           bind:value={themeName}
         />
         <div class="mb-1 flex flex-row items-center justify-between">
-          <p>Theme URL</p>
+          <p>URL</p>
         </div>
         <input
           class="mb-2 h-10 w-full rounded-lg border border-gray-500/40 px-2 placeholder-white/25 focus:outline-none"
