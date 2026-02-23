@@ -17,6 +17,9 @@
       <li>
         <a href="/submit" class="transition-colors duration-200 hover:text-[#fecdb2]">Submit</a>
       </li>
+      <li>
+        <a href="/help" class="transition-colors duration-200 hover:text-[#fecdb2]">Guide</a>
+      </li>
       {#if isAdmin}
         <li>
           <a href="/admin/submissions" class="transition-colors duration-200 hover:text-[#fecdb2]"
