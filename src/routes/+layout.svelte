@@ -14,7 +14,7 @@
 
   <Toaster />
 
-  <div class={`w-full ${isAdmin ? 'pt-24' : 'pt-16'}`}>
+  <div class="w-full pt-16">
     {@render children()}
   </div>
 </div>

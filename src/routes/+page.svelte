@@ -3,6 +3,8 @@
   import '@fontsource/iosevka';
   import '@fontsource/iosevka/700.css';
   import FileIcon from '~icons/carbon/document-download';
+  import DeleteIcon from '~icons/carbon/close-outline';
+  import EditIcon from '~icons/carbon/edit';
   import PreviewIcon from '~icons/icon-park-outline/preview-open';
   import { Tooltip } from '@svelte-plugins/tooltips';
 
@@ -55,6 +57,51 @@
               <button formaction="?/toToml" class="flex cursor-pointer"><FileIcon /></button>
             </form>
           </Tooltip>
+          {#if data.isAdmin}
+            <Tooltip content="Rename theme">
+              <form method="POST">
+                <input type="hidden" name="id" value={theme.id} />
+                <input type="hidden" name="name" value={theme.name} />
+                <button
+                  type="submit"
+                  formaction="?/rename"
+                  class="flex cursor-pointer text-[#f2c94c] transition-colors hover:text-[#ffd86b]"
+                  aria-label={`Rename ${theme.name}`}
+                  onclick={(event) => {
+                    const nextName = prompt('Rename theme', theme.name)?.trim();
+
+                    if (!nextName || nextName === theme.name) {
+                      event.preventDefault();
+                      return;
+                    }
+
+                    const button = event.currentTarget as HTMLButtonElement;
+                    const input = button.form?.elements.namedItem('name');
+
+                    if (input instanceof HTMLInputElement) {
+                      input.value = nextName;
+                    }
+                  }}><EditIcon /></button
+                >
+              </form>
+            </Tooltip>
+            <Tooltip content="Delete theme">
+              <form method="POST">
+                <input type="hidden" name="id" value={theme.id} />
+                <button
+                  type="submit"
+                  formaction="?/delete"
+                  class="flex cursor-pointer text-[#e74c3c] transition-colors hover:text-[#ff6b5b]"
+                  aria-label={`Delete ${theme.name}`}
+                  onclick={(event) => {
+                    if (!confirm(`Delete theme "${theme.name}"?`)) {
+                      event.preventDefault();
+                    }
+                  }}><DeleteIcon /></button
+                >
+              </form>
+            </Tooltip>
+          {/if}
         </div>
       </div>
     </div>
