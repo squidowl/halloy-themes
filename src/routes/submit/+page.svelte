@@ -27,58 +27,69 @@
   });
 </script>
 
-<div class="flex justify-center px-6">
-  <div class="w-full max-w-xl pt-16">
-    <form
-      use:enhance={() => {
-        loading = true;
-      }}
-      method="POST"
-      class="space-y-6"
+<div class="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-14">
+  <p
+    class="inline-flex rounded-full border border-[#50a9d9]/35 bg-[#50a9d9]/10 px-3 py-1 text-xs font-semibold tracking-wide text-[#50a9d9]"
+  >
+    Submit Theme
+  </p>
+  <h1 class="mt-4 text-3xl font-bold text-[#fecdb2] sm:text-4xl">Share a Theme</h1>
+  <p class="mt-3 max-w-2xl text-base leading-7 text-gray-200">
+    Share your favorite theme with the community. Approved submissions are listed on the site after
+    maintainer review.
+  </p>
+
+  <form
+    use:enhance={() => {
+      loading = true;
+    }}
+    method="POST"
+    class="mt-8 space-y-6 rounded-xl border border-gray-500/40 bg-black/30 p-5 sm:p-6"
+  >
+    <div>
+      <div class="mb-1 flex flex-row items-center justify-between">
+        <label for="themeName" class="text-sm font-semibold text-white">Title</label>
+      </div>
+      <input
+        id="themeName"
+        class="h-11 w-full rounded-lg border border-gray-500/40 bg-black/40 px-3 placeholder-white/25 transition-colors focus:border-[#fecdb2]/70 focus:outline-none"
+        placeholder="Theme name"
+        name="themeName"
+        bind:value={themeName}
+      />
+      <p class="mt-2 text-sm leading-6 text-gray-300">
+        Use a short, recognizable name for your theme.
+      </p>
+    </div>
+
+    <div>
+      <div class="mb-1 flex flex-row items-center justify-between">
+        <label for="themeUrl" class="text-sm font-semibold text-white">URL</label>
+      </div>
+      <input
+        id="themeUrl"
+        class="h-11 w-full rounded-lg border border-gray-500/40 bg-black/40 px-3 placeholder-white/25 transition-colors focus:border-[#fecdb2]/70 focus:outline-none"
+        placeholder="halloy:///theme?e=ACspLf8BT0dN_wIyMDT_A_-gev8E_s2y..."
+        name="themeUrl"
+        bind:value={themeUrl}
+      />
+      <p class="mt-2 text-sm leading-6 text-gray-300">
+        Paste an encoded Halloy theme URL or a direct URL to a <code>.toml</code> file.
+      </p>
+    </div>
+
+    <button
+      type="submit"
+      disabled={!themeUrl || !themeName || loading}
+      class="flex h-11 w-full cursor-pointer items-center justify-center rounded-md bg-[#50a9d9] px-4 font-bold text-white shadow-sm transition-colors hover:bg-[#3b92c2] disabled:cursor-not-allowed disabled:bg-[#a1cde4] disabled:text-black/40"
     >
-      <div>
-        <p>Share your favorite theme with our community!</p>
-        <p class="text-white/40">
-          Copy the encoded theme URL from Halloy's Theme Editor or provide the URL to a TOML file.
-          Once submitted, your theme will be reviewed and approved by a maintainer before being
-          listed on the site.
-        </p>
-      </div>
-
-      <div>
-        <div class="mb-1 flex flex-row items-center justify-between">
-          <p>Title</p>
-        </div>
-        <input
-          class="mb-2 h-10 w-full rounded-lg border border-gray-500/40 px-2 placeholder-white/25 focus:outline-none"
-          placeholder="Theme name"
-          name="themeName"
-          bind:value={themeName}
-        />
-        <div class="mb-1 flex flex-row items-center justify-between">
-          <p>URL</p>
-        </div>
-        <input
-          class="mb-2 h-10 w-full rounded-lg border border-gray-500/40 px-2 placeholder-white/25 focus:outline-none"
-          placeholder="halloy:///theme?e=ACspLf8BT0dN_wIyMDT_A_-gev8E_s2y..."
-          name="themeUrl"
-          bind:value={themeUrl}
-        />
-      </div>
-
-      <button
-        type="submit"
-        disabled={!themeUrl || !themeName || loading}
-        class="flex w-full cursor-pointer justify-center rounded-md bg-[#50a9d9] px-4 py-2 font-bold text-white shadow-sm transition-colors hover:bg-[#3b92c2] disabled:cursor-not-allowed disabled:bg-[#a1cde4] disabled:text-black/40"
-      >
-        {#if loading}
-          <span>Submitting...</span>
-        {:else}
-          Submit
-        {/if}
-      </button>
-    </form>
-  </div>
+      {#if loading}
+        <span>Submitting...</span>
+      {:else}
+        Submit
+      {/if}
+    </button>
+  </form>
 </div>
 
 <style>
