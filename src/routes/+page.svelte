@@ -15,6 +15,22 @@
 
   const { data }: PageProps = $props();
 
+  const createdOnFormatter = new Intl.DateTimeFormat(undefined, {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  });
+
+  function formatCreatedOn(value: string | Date): string {
+    const date = value instanceof Date ? value : new Date(value);
+
+    if (Number.isNaN(date.getTime())) {
+      return 'Unknown date';
+    }
+
+    return createdOnFormatter.format(date);
+  }
+
   function handleSubmit() {
     return async ({ result }: { result: ActionResult }) => {
       if (result.type === 'success' && result.data) {
@@ -41,20 +57,31 @@
   {#each data.themes as theme}
     <div class="pt-8 sm:pt-0">
       <Window {theme} />
-      <div class="flex flex-row items-center justify-between">
-        <p class="text-md mt-2">
-          {theme.name}
-        </p>
+      <div
+        class="mt-2 flex flex-row items-center justify-between gap-4 rounded-lg border border-gray-500/35 bg-black/30 px-3 py-2"
+      >
+        <div>
+          <p class="text-md font-semibold text-white">{theme.name}</p>
+          <p class="text-xs text-gray-300">Added {formatCreatedOn(theme.createdOn)}</p>
+        </div>
         <div class="flex flex-row gap-2">
           <Tooltip content="Preview in Halloy">
-            <a href="halloy:///theme?e={theme.encoded}"><PreviewIcon /></a>
+            <a
+              href="halloy:///theme?e={theme.encoded}"
+              class="inline-flex h-8 w-8 items-center justify-center rounded-md border border-gray-500/45 bg-black/40 text-white transition-colors hover:border-[#fecdb2]/60 hover:text-[#fecdb2]"
+              aria-label={`Preview ${theme.name} in Halloy`}><PreviewIcon /></a
+            >
           </Tooltip>
           <Tooltip content="Download TOML file">
             <form use:enhance method="POST" use:enhance={handleSubmit}>
               <input type="hidden" name="encoded" value={theme.encoded} />
               <input type="hidden" name="name" value={theme.name} />
 
-              <button formaction="?/toToml" class="flex cursor-pointer"><FileIcon /></button>
+              <button
+                formaction="?/toToml"
+                class="inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-md border border-gray-500/45 bg-black/40 text-white transition-colors hover:border-[#fecdb2]/60 hover:text-[#fecdb2]"
+                aria-label={`Download ${theme.name} as TOML`}><FileIcon /></button
+              >
             </form>
           </Tooltip>
           {#if data.isAdmin}
@@ -65,7 +92,7 @@
                 <button
                   type="submit"
                   formaction="?/rename"
-                  class="flex cursor-pointer text-[#f2c94c] transition-colors hover:text-[#ffd86b]"
+                  class="inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-md border border-gray-500/45 bg-black/40 text-[#f2c94c] transition-colors hover:border-[#ffd86b]/60 hover:text-[#ffd86b]"
                   aria-label={`Rename ${theme.name}`}
                   onclick={(event) => {
                     const nextName = prompt('Rename theme', theme.name)?.trim();
@@ -91,7 +118,7 @@
                 <button
                   type="submit"
                   formaction="?/delete"
-                  class="flex cursor-pointer text-[#e74c3c] transition-colors hover:text-[#ff6b5b]"
+                  class="inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-md border border-gray-500/45 bg-black/40 text-[#e74c3c] transition-colors hover:border-[#ff6b5b]/60 hover:text-[#ff6b5b]"
                   aria-label={`Delete ${theme.name}`}
                   onclick={(event) => {
                     if (!confirm(`Delete theme "${theme.name}"?`)) {
