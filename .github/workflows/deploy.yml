@@ -1,0 +1,104 @@
+name: Deploy
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+env:
+  IMAGE: ghcr.io/squidowl/halloy-themes
+
+jobs:
+  deploy:
+    name: Build and deploy
+    # Only main can be deployed, whichever branch is picked in the UI.
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    environment:
+      name: production
+      url: ${{ vars.SITE_URL }}
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Check out main
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Check deployment settings
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+          SITE_URL: ${{ vars.SITE_URL }}
+        run: |
+          missing=0
+          for name in DEPLOY_HOST DEPLOY_SSH_KEY DEPLOY_KNOWN_HOSTS SITE_URL; do
+            if [[ -z "${!name}" ]]; then
+              echo "::error::${name} is not configured for the production environment"
+              missing=1
+            fi
+          done
+          exit "${missing}"
+
+      - name: Build and push image
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "${GITHUB_TOKEN}" | docker login ghcr.io --username "${GITHUB_ACTOR}" --password-stdin
+          docker buildx create --use --driver docker-container
+          docker buildx build \
+            --platform linux/amd64 \
+            --label "org.opencontainers.image.source=https://github.com/${GITHUB_REPOSITORY}" \
+            --label "org.opencontainers.image.revision=${GITHUB_SHA}" \
+            --tag "${IMAGE}:sha-${GITHUB_SHA}" \
+            --cache-from "type=registry,ref=${IMAGE}:buildcache" \
+            --cache-to "type=registry,ref=${IMAGE}:buildcache,mode=max" \
+            --push \
+            .
+
+      - name: Deploy to server
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+        run: |
+          ssh_dir="${RUNNER_TEMP}/deploy-ssh"
+          install -d -m 0700 "${ssh_dir}"
+          printf '%s\n' "${DEPLOY_SSH_KEY}" > "${ssh_dir}/key"
+          printf '%s\n' "${DEPLOY_KNOWN_HOSTS}" > "${ssh_dir}/known_hosts"
+          chmod 0600 "${ssh_dir}/key" "${ssh_dir}/known_hosts"
+
+          # The server only accepts an image tag; everything else happens there:
+          # backup, migrations, start, health check and rollback on failure.
+          ssh \
+            -i "${ssh_dir}/key" \
+            -o BatchMode=yes \
+            -o IdentitiesOnly=yes \
+            -o StrictHostKeyChecking=yes \
+            -o "UserKnownHostsFile=${ssh_dir}/known_hosts" \
+            "halloy-deploy@${DEPLOY_HOST}" \
+            "sha-${GITHUB_SHA}"
+
+      - name: Check the public site
+        env:
+          SITE_URL: ${{ vars.SITE_URL }}
+        run: |
+          for _ in 1 2 3 4 5; do
+            if curl --fail --silent --show-error --max-time 10 "${SITE_URL}/healthz"; then
+              echo
+              echo "Deployed ${GITHUB_SHA} to ${SITE_URL}"
+              exit 0
+            fi
+            sleep 5
+          done
+          echo "::error::${SITE_URL}/healthz did not respond"
+          exit 1
