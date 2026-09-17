@@ -1,0 +1,13 @@
+.git
+.github
+.env
+.env.*
+node_modules
+target
+build
+.svelte-kit
+packages/theme/pkg
+docker
+Dockerfile
+.dockerignore
+*.dump

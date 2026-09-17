@@ -27,13 +27,11 @@
     "@types/seedrandom": "^3.0.8",
     "chroma-js": "^3.2.0",
     "drizzle-kit": "^0.31.9",
-    "drizzle-orm": "^0.45.1",
     "eslint": "^9.39.3",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-svelte": "^3.15.0",
     "globals": "^16.5.0",
     "lodash": "^4.17.23",
-    "postgres": "^3.4.8",
     "prettier": "^3.8.1",
     "prettier-plugin-svelte": "^3.5.0",
     "prettier-plugin-tailwindcss": "^0.7.2",
@@ -60,6 +58,8 @@
     "@iarna/toml": "^2.2.5",
     "@svelte-plugins/tooltips": "4.0.0-beta.1",
     "@zerodevx/svelte-json-view": "^1.0.11",
+    "drizzle-orm": "^0.45.1",
+    "postgres": "^3.4.8",
     "svelte-french-toast": "^2.0.0-alpha.0",
     "theme": "file:packages/theme/pkg"
   }
