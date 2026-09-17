@@ -55,6 +55,6 @@ build:
 preview host="localhost": build
     npx vite preview --host {{host}}
 
-# Deploy to vercel
-deploy: build
-    npx vercel deploy --prod --prebuilt
+# Run prod build locally (needs `just up` for the database)
+start port="3001": build
+    PORT={{port}} ORIGIN=http://localhost:{{port}} node --env-file=.env.development build
