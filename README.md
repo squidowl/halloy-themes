@@ -1,3 +1,5 @@
 ```bash
-pnpm run dev --open
+cargo install just
+just init
+just dev
 ```

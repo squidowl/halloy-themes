@@ -50,19 +50,31 @@
     <h2 class="text-lg font-semibold text-white sm:text-xl">Theme directory paths</h2>
     <div class="mt-4 space-y-3 text-sm sm:text-base">
       <div>
-        <p class="mb-1 text-sm font-medium text-gray-300">Linux</p>
+        <p class="mb-1 text-sm font-semibold text-gray-300">Linux</p>
         <code class="block overflow-x-auto rounded bg-black/50 px-3 py-2 text-[#fecdb2]"
-          >~/.config/halloy/themes/</code
+          >$XDG_CONFIG_HOME/.config/halloy/themes/</code
+        >
+        <p class="ml-6 mb-1 text-sm font-medium text-gray-300">or</p>
+        <code class="block overflow-x-auto rounded bg-black/50 px-3 py-2 text-[#fecdb2]"
+          >$HOME/.config/halloy/themes/</code
+        >
+        <p class="ml-6 mb-1 text-sm font-medium text-gray-300">or (Flatpak)</p>
+        <code class="block overflow-x-auto rounded bg-black/50 px-3 py-2 text-[#fecdb2]"
+          >$HOME/.var/app/org.squidowl.halloy/config/themes/</code
         >
       </div>
       <div>
-        <p class="mb-1 text-sm font-medium text-gray-300">macOS</p>
+        <p class="mb-1 text-sm font-semibold text-gray-300">macOS</p>
         <code class="block overflow-x-auto rounded bg-black/50 px-3 py-2 text-[#fecdb2]"
           >~/Library/Application Support/halloy/themes/</code
         >
+        <p class="ml-6 mb-1 text-sm font-medium text-gray-300">or</p>
+        <code class="block overflow-x-auto rounded bg-black/50 px-3 py-2 text-[#fecdb2]"
+          >$HOME/.config/halloy/themes/</code
+        >
       </div>
       <div>
-        <p class="mb-1 text-sm font-medium text-gray-300">Windows</p>
+        <p class="mb-1 text-sm font-semibold text-gray-300">Windows</p>
         <code class="block overflow-x-auto rounded bg-black/50 px-3 py-2 text-[#fecdb2]"
           >%APPDATA%\halloy\themes\</code
         >

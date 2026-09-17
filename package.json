@@ -43,7 +43,7 @@
     "svelte": "^5.53.3",
     "svelte-check": "^4.4.3",
     "tailwindcss": "^4.2.1",
-    "theme": "link:packages/theme/pkg",
+    "theme": "file:packages/theme/pkg",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.56.0",
     "unplugin-icons": "^22.5.0",
@@ -63,6 +63,6 @@
     "@iarna/toml": "^2.2.5",
     "@svelte-plugins/tooltips": "4.0.0-beta.1",
     "@zerodevx/svelte-json-view": "^1.0.11",
-    "svelte-french-toast": "^1.2.0"
+    "svelte-french-toast": "^2.0.0-alpha.0"
   }
 }
