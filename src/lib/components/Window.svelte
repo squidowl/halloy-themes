@@ -4,6 +4,8 @@
   import _ from 'lodash';
   import { awayAlpha, randomizeColor } from '$lib';
 
+  import Globe from '$lib/components/icons/Globe.svelte';
+
   const { theme }: { theme: Theme } = $props();
   const colors = $derived(theme.colors);
 
@@ -43,33 +45,34 @@
     <div class="hidden w-fit md:block" style={`background-color: ${colors.general?.background};`}>
       <div class="p-2" style={`color: ${colors.text?.primary};`}>
         <div
-          class="rounded-lg px-6 py-1 hover:bg-[var(--hover-bg-color)]"
+          class="rounded-lg px-3 py-1 hover:bg-[var(--hover-bg-color)] cursor-pointer"
           style={`--hover-bg-color: ${colors.buttons?.primary?.background_hover};`}
         >
-          liberachat
+          <span class="inline-block h-[15px] w-[15px] relative top-[2px] left-[-2px]" style={`color: ${colors.text?.primary};`}><Globe /></span>
+          <span>liberachat</span>
         </div>
 
         <!-- Buffer list -->
         <div class="space-y-1">
           <div
-            class="rounded-lg px-6 py-1 hover:bg-[var(--hover-bg-color)]"
+            class="rounded-lg px-3 py-1 hover:bg-[var(--hover-bg-color)] cursor-pointer"
             style={`--hover-bg-color: ${colors.buttons?.primary?.background_hover};`}
           >
-            <span class="mr-0.5" style={`color: ${colors.general?.unread_indicator};`}>•</span>
+            <span class="mr-0.5 inline-block h-[15px] w-[15px]" style={`color: ${colors.general?.unread_indicator};`}>•</span>
             <span>#glirc</span>
           </div>
           <div
-            class="rounded-lg px-6 py-1 bg-[var(--bg-color)] hover:bg-[var(--hover-bg-color)] border"
+            class="rounded-lg px-3 py-1 bg-[var(--bg-color)] hover:bg-[var(--hover-bg-color)] border cursor-pointer"
             style={`--bg-color: ${colors.buttons?.primary?.background_selected}; --hover-bg-color: ${colors.buttons?.primary?.background_selected_hover}; border-color: ${colors.buffer?.border_selected};`}
           >
-            <span class="mr-0.5" style={`visibility: hidden;`}>•</span>
+            <span class="mr-0.5 inline-block h-[15px] w-[15px]" style="visibility: hidden;">•</span>
             <span>#halloy</span>
           </div>
           <div
-            class="rounded-lg px-6 py-1 bg-[var(--bg-color)] hover:bg-[var(--hover-bg-color)]"
+            class="rounded-lg px-3 py-1 bg-[var(--bg-color)] hover:bg-[var(--hover-bg-color)] cursor-pointer"
             style={`--bg-color: ${colors.buttons?.primary?.background_selected}; --hover-bg-color: ${colors.buttons?.primary?.background_selected_hover};`}
           >
-            <span class="mr-0.5" style={`visibility: hidden;`}>•</span>
+            <span class="mr-0.5 inline-block h-[15px] w-[15px]" style="visibility: hidden;">•</span>
             <span>#libera</span>
           </div>
         </div>
@@ -172,17 +175,17 @@
 
         <!-- Nick list -->
         <div class="hidden flex-col pl-2 sm:block">
-          {#each ['@casperstorm', '@tarkah', '@andymandias'] as user}
+          {#each ['@casperstorm', '@tarkah', '@andymandias'] as user (user)}
             <div style={`color: ${nickname(_.trimStart(user, '@+'))};`}>
               {user}
             </div>
           {/each}
-          {#each ['+pixelcat', 'bob42'] as user}
+          {#each ['+pixelcat', 'bob42'] as user (user)}
             <div style={`color: ${nickname(_.trimStart(user, '@+'))}; opacity: ${away()};`}>
               {user}
             </div>
           {/each}
-          {#each ['musicfan', 'snowdrop'] as user}
+          {#each ['musicfan', 'snowdrop'] as user (user)}
             <div style={`color: ${nickname(_.trimStart(user, '@+'))};`}>
               {user}
             </div>

@@ -34,7 +34,7 @@ importers:
         version: 2.0.0-alpha.0(svelte@5.53.3)
       theme:
         specifier: file:packages/theme/pkg
-        version: file:packages/theme/pkg
+        version: pkg@file:packages/theme/pkg
     devDependencies:
       '@eslint/compat':
         specifier: ^1.4.1
@@ -2066,6 +2066,9 @@ packages:
   pkg-types@2.3.0:
     resolution: {integrity: sha512-SIqCzDRg0s9npO5XQ3tNZioRY1uK06lA41ynBC1YmFTmnY6FjUjVt6s4LoADmwoig1qqD0oK8h1p/8mlMx8Oig==}
 
+  pkg@file:packages/theme/pkg:
+    resolution: {directory: packages/theme/pkg, type: directory}
+
   postcss-load-config@3.1.4:
     resolution: {integrity: sha512-6DiM4E7v4coTE4uzA8U//WhtPwyhiim3eyjEMFCnUpzbrkK9wJHgKDT2mR+HbtSrd/NubVaYTOpSpjUl8NQeRg==}
     engines: {node: '>= 10'}
@@ -2328,9 +2331,6 @@ packages:
   tapable@2.3.0:
     resolution: {integrity: sha512-g9ljZiwki/LfxmQADO3dEY1CbpmXT5Hm2fJ+QaGKwSXUylMybePR7/67YW7jOrrvjEgL1Fmz5kzyAjWVWLlucg==}
     engines: {node: '>=6'}
-
-  theme@file:packages/theme/pkg:
-    resolution: {directory: packages/theme/pkg, type: directory}
 
   tinyexec@1.0.2:
     resolution: {integrity: sha512-W/KYk+NFhkmsYpuHq5JykngiOCnxeVL8v8dFnqxSD8qEEdRfXk1SDM6JzNqcERbcGYj9tMrDQBYV9cjgnunFIg==}
@@ -4044,6 +4044,8 @@ snapshots:
       exsolve: 1.0.8
       pathe: 2.0.3
 
+  pkg@file:packages/theme/pkg: {}
+
   postcss-load-config@3.1.4(postcss@8.5.3)(ts-node@10.9.1(@swc/core@1.11.9)(@types/node@22.13.11)(typescript@5.9.3)):
     dependencies:
       lilconfig: 2.1.0
@@ -4284,8 +4286,6 @@ snapshots:
   tailwindcss@4.2.1: {}
 
   tapable@2.3.0: {}
-
-  theme@file:packages/theme/pkg: {}
 
   tinyexec@1.0.2: {}
 
