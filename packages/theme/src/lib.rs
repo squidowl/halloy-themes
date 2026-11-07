@@ -1,16 +1,16 @@
-use halloy_theme::Colors;
+use halloy_theme::Styles;
 use thiserror::Error;
 use wasm_bindgen::{JsValue, prelude::wasm_bindgen};
 
 #[wasm_bindgen]
 pub fn decode(content: &str) -> Result<JsValue, Error> {
-    let colors = Colors::decode_base64(content)?;
+    let colors = Styles::decode_base64(content)?;
     Ok(serde_wasm_bindgen::to_value(&colors).map_err(Error::ConvertTo)?)
 }
 
 #[wasm_bindgen]
 pub fn encode(value: JsValue) -> Result<String, Error> {
-    let colors: Colors = serde_wasm_bindgen::from_value(value).map_err(Error::ConvertFrom)?;
+    let colors: Styles = serde_wasm_bindgen::from_value(value).map_err(Error::ConvertFrom)?;
     Ok(colors.encode_base64())
 }
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Theme } from '$lib/theme';
+  import { FontStyle, isTextStyle, type Theme } from '$lib/theme-types';
 
   import _ from 'lodash';
   import { awayAlpha, randomizeColor } from '$lib';
@@ -10,8 +10,42 @@
   const colors = $derived(theme.colors);
 
   const nickname = (nickname: string): string => {
-    let color = colors.buffer?.nickname ?? '#000000';
-    return randomizeColor(color, nickname);
+    let color = '#000000';
+    let fontStyle = FontStyle.NONE;
+
+    if (!colors.buffer?.nickname) {
+      return color;
+    }
+
+    if (typeof colors.buffer?.nickname == "string") {
+      color = colors.buffer?.nickname;
+    } else if (isTextStyle(colors.buffer?.nickname)) {
+      color = colors.buffer?.nickname;
+      fontStyle = colors.buffer?.font_style;
+    }
+
+    let style = '';
+    switch (fontStyle) {
+      case FontStyle.BOLD:
+        style = "font-weight: bold;";
+        break;
+
+      case FontStyle.ITALIC:
+        style = "font-style: italic;";
+        break;
+
+      case FontStyle.ITALIC_BOLD:
+        style = "font-weight: bold; font-style: italic;";
+        break;
+
+      case FontStyle.NONE:
+      case FontStyle.NORMAL:
+      default:
+        style = "font-style: normal;";
+        break;
+    }
+
+    return `color: ${randomizeColor(color, nickname)}; ${style}`;
   };
 
   const away = (): string => {
@@ -103,13 +137,13 @@
           <div>
             <div class="flex flex-row gap-2">
               <span style={`color: ${colors.text?.secondary};`}>16:42</span>
-              <span style={`color: ${nickname('Guest5790')};`}>Guest5790</span>
+              <span style={`${nickname('Guest5790')}`}>Guest5790</span>
               <span>how do you configure halloy?</span>
             </div>
 
             <div class="flex flex-row gap-2">
               <span style={`color: ${colors.text?.secondary};`}>16:54</span>
-              <span style={`color: ${nickname('casperstorm')};`}>@casperstorm</span>
+              <span style={`${nickname('casperstorm')}`}>@casperstorm</span>
               <span
                 ><span style={`color: ${colors.buffer?.url};`}
                   ><a class="hover:underline" href="https://halloy.chat/">https://halloy.chat/</a></span
@@ -126,15 +160,15 @@
 
             <div class="flex flex-row gap-2">
               <span style={`color: ${colors.text?.secondary};`}>16:56</span>
-              <span style={`color: ${nickname('pizzalover')};`}>pizzalover</span>
+              <span style={`${nickname('pizzalover')}`}>pizzalover</span>
               <span>good pizza toppings?</span>
             </div>
 
             <div class="flex flex-row gap-2">
               <span style={`color: ${colors.text?.secondary};`}>16:56</span>
-              <span style={`color: ${nickname('starfish')};`}>starfish</span>
+              <span style={`${nickname('starfish')}`}>starfish</span>
               <span
-                ><span style={`color: ${nickname('pizzalover')};`}>pizzalover</span>:
+                ><span style={`${nickname('pizzalover')}`}>pizzalover</span>:
                 <span style={`background-color: ${colors.buffer?.highlight};`}>pineapple</span>? XD</span
               >
             </div>
@@ -162,7 +196,7 @@
 
             <div class="flex flex-row gap-2">
               <span style={`color: ${colors.text?.secondary};`}>17:10</span>
-              <span style={`color: ${nickname('coffeemug')};`}>coffeemug</span>
+              <span style={`${nickname('coffeemug')}`}>coffeemug</span>
               <span>babe wake up, irc is back</span>
             </div>
 
@@ -176,24 +210,24 @@
         <!-- Nick list -->
         <div class="hidden flex-col pl-2 sm:block">
           {#each ['@casperstorm', '@tarkah', '@andymandias'] as user (user)}
-            <div style={`color: ${nickname(_.trimStart(user, '@+'))};`}>
+            <div style={`${nickname(_.trimStart(user, '@+'))}`}>
               {user}
             </div>
           {/each}
           {#each ['+pixelcat', 'bob42'] as user (user)}
-            <div style={`color: ${nickname(_.trimStart(user, '@+'))}; opacity: ${away()};`}>
+            <div style={`${nickname(_.trimStart(user, '@+'))} opacity: ${away()};`}>
               {user}
             </div>
           {/each}
           {#each ['musicfan', 'snowdrop'] as user (user)}
-            <div style={`color: ${nickname(_.trimStart(user, '@+'))};`}>
+            <div style={`${nickname(_.trimStart(user, '@+'))}`}>
               {user}
             </div>
           {/each}
-          <div style={`color: ${nickname('qwerty')}; opacity: ${away()};`}>
+          <div style={`${nickname('qwerty')} opacity: ${away()};`}>
             qwerty
           </div>
-          <div style={`color: ${nickname('coffeemug')};`}>
+          <div style={`${nickname('coffeemug')}`}>
             coffeemug
           </div>
         </div>
