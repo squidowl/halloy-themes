@@ -1,6 +1,10 @@
-import { and, eq, ne } from 'drizzle-orm';
-import { encode as _encode, decode as _decode } from 'theme';
+import {and, eq, ne} from 'drizzle-orm';
+import {encode as _encode, decode as _decode} from 'theme';
 import db from '$lib/db';
+import type {
+  Colors,
+  Theme,
+} from '$lib/theme-types'
 
 export const encode = (colors: Colors): string => {
   return _encode(colors);
@@ -12,7 +16,7 @@ export const decode = (encoded: string): Colors => {
 
 export const submit = async (name: string, colors: Colors) => {
   const encoded = encode(colors);
-  await db.pool.insert(db.submissions).values({ name, colors, encoded });
+  await db.pool.insert(db.submissions).values({name, colors, encoded});
 };
 
 export const load = async (): Promise<Theme[]> => {
@@ -37,61 +41,5 @@ export const remove = async (id: number) => {
 };
 
 export const rename = async (id: number, name: string) => {
-  await db.pool.update(db.themes).set({ name }).where(eq(db.themes.id, id));
+  await db.pool.update(db.themes).set({name}).where(eq(db.themes.id, id));
 };
-
-export interface Theme {
-  id: number;
-  name: string;
-  colors: Colors;
-  encoded: string;
-  createdOn: Date;
-}
-
-export interface Colors {
-  general?: {
-    background?: string;
-    border?: string;
-    horizontal_rule?: string;
-    unread_indicator?: string;
-  };
-  text?: {
-    primary?: string;
-    secondary?: string;
-    tertiary?: string;
-    success?: string;
-    error?: string;
-  };
-  buffer?: {
-    action?: string;
-    background?: string;
-    background_text_input?: string;
-    background_title_bar?: string;
-    border?: string;
-    border_selected?: string;
-    code?: string;
-    highlight?: string;
-    nickname?: string;
-    selection?: string;
-    server_messages?: {
-      default?: string;
-    };
-    timestamp?: string;
-    topic?: string;
-    url?: string;
-  };
-  buttons?: {
-    primary?: {
-      background?: string;
-      background_hover?: string;
-      background_selected?: string;
-      background_selected_hover?: string;
-    };
-    secondary?: {
-      background?: string;
-      background_hover?: string;
-      background_selected?: string;
-      background_selected_hover?: string;
-    };
-  };
-}
